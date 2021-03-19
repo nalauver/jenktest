@@ -19,6 +19,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                git clone https://github.com/nalauver/jenktest.git
                 echo 'Building..'
             }
         }

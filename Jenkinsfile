@@ -19,8 +19,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git url: 'https://github.com/nalauver/jenktest.git'
-                echo 'Building..'
+                git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'
             }
         }
         stage('Test') {

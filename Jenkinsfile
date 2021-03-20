@@ -1,5 +1,4 @@
 #!groovy
-#blah
 def remote = [:]
 remote.allowAnyHosts = true
 remote.appendName    = true

@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git url: "https://github.com/nalauver/jenktest.git"
+                git clone https://github.com/nalauver/jenktest.git
                 echo 'Building..'
             }
         }
@@ -33,5 +33,5 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-
+   }
 }

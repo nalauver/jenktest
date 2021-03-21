@@ -19,8 +19,10 @@ pipeline {
     stages {
         stage('GetPublicIP') {
             steps {
-                 sh "curl http://169.254.169.254/latest/meta-data/public-ipv4 > commandResult"
-                 result = readFile('commandResult').trim()
+                script {
+                   env.PUBLICIP = sh 'curl http://169.254.169.254/latest/meta-data/public-ipv4'
+                }
+                echo "${env.PUBLICIP}"
             }
         }
         stage('Build') {

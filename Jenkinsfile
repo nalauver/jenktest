@@ -39,7 +39,7 @@ pipeline {
                     echo "${remotehostip}"
                     remote.host = "${remotehostip}"
                 }
-                sshCommand remote: remote, command: "hostname -f"
+                sshCommand remote: remote, command: "hostname -f ; who ; w ; uptime ; last"
             }
         }
         stage('Test') {

@@ -3,11 +3,12 @@ def remote = [:]
 remote.allowAnyHosts = true
 remote.appendName    = true
 remote.host          = "10.10.10.10"
-remote.identityFile  = "/home/jenkins/.ssh/id_rsa"
+remote.identityFile  = "/var/lib/jenkins/nalauv.er.pem'
 remote.knownHosts    = "/dev/null"
-remote.name          = "neal-jenkin-test"
+//remote.logLevel    = "INFO"
+remote.name          = "test-aws-fleet"
 remote.pty           = true
-remote.user          = "jenkins"
+remote.user          = "ec2-user"
 
 pipeline {
     agent { label "neal-local" }
@@ -31,6 +32,12 @@ pipeline {
             steps {
                 git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'
             }
+        }
+        script {
+            remote.host = env.PUBLICIP
+        }
+        stage('SshTest') {
+            sshCommand remote: remote, command: "hostname -f"
         }
         stage('Test') {
             agent { label "ec2-fleet" }

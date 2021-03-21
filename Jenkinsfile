@@ -22,10 +22,7 @@ pipeline {
             agent { label "ec2-fleet" }
             steps {
                 script {
-                   remotehostip = sh (
-                       curl http://169.254.169.254/latest/meta-data/public-ipv4',
-                       returnStdout: true,
-                   }
+                   remotehostip = sh (curl http://169.254.169.254/latest/meta-data/public-ipv4', returnStdout: true) 
                    echo "remotehostip=\"${remotehostip}\""
                 }
             }

@@ -10,6 +10,7 @@ remote.pty           = true
 remote.user          = "jenkins"
 
 pipeline {
+    agent { label "neal-local" }
 
     environment {
        SOME_ENV_VAR = "blah"

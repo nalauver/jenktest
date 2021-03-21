@@ -36,7 +36,7 @@ pipeline {
         stage('SshTest') {
             steps {
                 script {
-                    remote.host = env.PUBLICIP
+                    remote.host = "54.149.239.103"
                 }
                 sshCommand remote: remote, command: "hostname -f"
             }

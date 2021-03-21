@@ -22,7 +22,7 @@ pipeline {
             agent { label "ec2-fleet" }
             steps {
                 script {
-                   env.PUBLICIP = sh 'curl http://169.254.169.254/latest/meta-data/public-ipv4'
+                   remote.host = sh 'curl http://169.254.169.254/latest/meta-data/public-ipv4'
                 }
                 echo "${env.PUBLICIP}"
             }
@@ -35,9 +35,6 @@ pipeline {
         }
         stage('SshTest') {
             steps {
-                script {
-                    remote.host = "54.149.239.103"
-                }
                 sshCommand remote: remote, command: "hostname -f"
             }
         }

@@ -23,8 +23,8 @@ pipeline {
             steps {
                 script {
                    remotehostip = sh 'curl http://169.254.169.254/latest/meta-data/public-ipv4'
+                   echo "${remotehostip}"
                 }
-                echo "${env.PUBLICIP}"
             }
         }
         stage('Build') {
@@ -36,6 +36,7 @@ pipeline {
         stage('SshTest') {
             steps {
                 script {
+                    echo "${remotehostip}"
                     remote.host = "${remotehostip}"
                 }
                 sshCommand remote: remote, command: "hostname -f"

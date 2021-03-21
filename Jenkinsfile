@@ -17,6 +17,12 @@ pipeline {
     }
 
     stages {
+        stage('GetPublicIP') {
+            steps {
+                 sh "curl http://169.254.169.254/latest/meta-data/public-ipv4 > commandResult"
+                 result = readFile('commandResult').trim()
+            }
+        }
         stage('Build') {
             steps {
                 git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'

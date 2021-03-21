@@ -34,8 +34,10 @@ pipeline {
             }
         }
         stage('SshTest') {
-            remote.host = "${remotehostip}"
             steps {
+                script {
+                    remote.host = "${remotehostip}"
+                }
                 sshCommand remote: remote, command: "hostname -f"
             }
         }

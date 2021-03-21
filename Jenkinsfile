@@ -26,16 +26,19 @@ pipeline {
             }
         }
         stage('Build') {
+            agent { label "ec2-fleet" }
             steps {
                 git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'
             }
         }
         stage('Test') {
+            agent { label "ec2-fleet" }
             steps {
                 echo 'Testing..'
             }
         }
         stage('Deploy') {
+            agent { label "ec2-fleet" }
             steps {
                 echo 'Deploying....'
             }

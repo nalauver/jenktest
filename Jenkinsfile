@@ -20,10 +20,9 @@ pipeline {
     stages {
         stage('GetPublicIP') {
             agent { label "ec2-fleet" }
-            remotehostip = sh (
-                script: "curl http://169.254.169.254/latest/meta-data/public-ipv4",
-                returnStdout: true
-            ) 
+            steps {
+                remotehostip = sh ( script: 'curl http://169.254.169.254/latest/meta-data/public-ipv4', returnStdout: true )
+            }
         }
         stage('Build') {
             agent { label "ec2-fleet" }

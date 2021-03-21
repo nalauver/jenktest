@@ -33,6 +33,7 @@ pipeline {
             }
         }
         stage('SshTest') {
+            agent { label "neal-local" }
             steps {
                 script {
                     echo "${remotehostip}"

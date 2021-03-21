@@ -10,7 +10,6 @@ remote.pty           = true
 remote.user          = "jenkins"
 
 pipeline {
-    agent { label "ec2-fleet" }
 
     environment {
        SOME_ENV_VAR = "blah"
@@ -18,6 +17,7 @@ pipeline {
 
     stages {
         stage('GetPublicIP') {
+            agent { label "ec2-fleet" }
             steps {
                 script {
                    env.PUBLICIP = sh 'curl http://169.254.169.254/latest/meta-data/public-ipv4'

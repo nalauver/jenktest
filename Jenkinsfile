@@ -21,13 +21,11 @@ pipeline {
         stage('GetPublicIP') {
             agent { label "ec2-fleet" }
             steps {
-                script {
                    remotehostip = sh (
                        script: "curl http://169.254.169.254/latest/meta-data/public-ipv4",
                        returnStdout: true
                    ) 
                    echo "remotehostip=\"${remotehostip}\""
-                }
             }
         }
         stage('Build') {

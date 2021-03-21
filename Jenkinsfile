@@ -33,11 +33,11 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'
             }
         }
-        steps {
-            script {
-                remote.host = env.PUBLICIP
-            }
-            stage('SshTest') {
+        stage('SshTest') {
+            steps {
+                script {
+                    remote.host = env.PUBLICIP
+                }
                 sshCommand remote: remote, command: "hostname -f"
             }
         }

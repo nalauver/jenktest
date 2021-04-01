@@ -6,6 +6,7 @@ remote.host          = "10.10.10.10"
 remote.identityFile  = "/home/jenktestuser/awscreds/nalauver.pem"
 remote.knownHosts    = "/dev/null"
 //remote.logLevel    = "INFO"
+//comment
 remote.name          = "test-aws-fleet"
 remote.pty           = true
 remote.user          = "ec2-user"

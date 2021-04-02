@@ -27,7 +27,7 @@ pipeline {
                 }
             }
         }
-        //stage('Parallel to Monitor Fleet and Virtualbox') {
+        stage('Parallel to Monitor Fleet and Virtualbox') {
             parallel {
                 stage('EC2-Fleet') {
                     agent { label "ec2-fleet" }
@@ -37,7 +37,7 @@ pipeline {
                          }
                     }
                 }
-                stage('Local') {
+                stages('Local') {
                     agent { label "neal-local" }
                     stage('Build') {
                         steps {
@@ -68,7 +68,7 @@ pipeline {
                     }
                 }
             }
-        //}
+        }
    }
 }
 

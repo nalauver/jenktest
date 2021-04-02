@@ -34,7 +34,6 @@ pipeline {
                     sh """
                          echo 'wait for virtualbox to complete'
                     """
-                    }
                 }
                 stage('Local') {
                     agent { label "neal-local" }

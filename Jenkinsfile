@@ -12,6 +12,7 @@ remote.pty           = true
 remote.user          = "ec2-user"
 
 pipeline {
+    options { skipDefaultCheckout(true) }
     agent { label "neal-local" }
 
     environment {

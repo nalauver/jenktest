@@ -27,6 +27,12 @@ pipeline {
                 }
             }
         }
+        stage('Build') {
+            agent { label "ec2-fleet" }
+            steps {
+                git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'
+            }
+        }
         stage('Parallel to Monitor Fleet and Virtualbox') {
             parallel {
                 stage('EC2-Fleet') {
@@ -40,11 +46,6 @@ pipeline {
                 stage('Local') {
                     agent { label "neal-local" }
                     stages {
-                        stage('Build') {
-                            steps {
-                                git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'
-                            }
-                        }
                         stage('SshTest') {
                             agent { label "neal-local" }
                             steps {

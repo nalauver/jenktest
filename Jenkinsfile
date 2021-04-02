@@ -39,31 +39,33 @@ pipeline {
                 }
                 stage('Local') {
                     agent { label "neal-local" }
-                    stage('Build') {
-                        steps {
-                            git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'
-                        }
-                    }
-                    stage('SshTest') {
-                        agent { label "neal-local" }
-                        steps {
-                            script {
-                                echo "${remotehostip}"
-                                remote.host = "${remotehostip}"
+                    stages {
+                        stage('Build') {
+                            steps {
+                                git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'
                             }
-                            sshCommand remote: remote, command: "hostname -f ; who ; w ; uptime ; last"
                         }
-                    }
-                    stage('Test') {
-                        agent { label "ec2-fleet" }
-                        steps {
-                            echo 'Testing..'
+                        stage('SshTest') {
+                            agent { label "neal-local" }
+                            steps {
+                                script {
+                                    echo "${remotehostip}"
+                                    remote.host = "${remotehostip}"
+                                }
+                                sshCommand remote: remote, command: "hostname -f ; who ; w ; uptime ; last"
+                            }
                         }
-                    }
-                    stage('Deploy') {
-                        agent { label "ec2-fleet" }
-                        steps {
-                            echo 'Deploying....'
+                        stage('Test') {
+                            agent { label "ec2-fleet" }
+                            steps {
+                                echo 'Testing..'
+                            }
+                        }
+                        stage('Deploy') {
+                            agent { label "ec2-fleet" }
+                            steps {
+                                echo 'Deploying....'
+                            }
                         }
                     }
                 }

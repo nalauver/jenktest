@@ -32,9 +32,9 @@ pipeline {
                 stage('EC2-Fleet') {
                     agent { label "ec2-fleet" }
                     steps {
-                         sh """
+                         script {
                             echo 'wait for virtualbox to complete'
-                         """
+                         }
                     }
                 }
                 stage('Local') {

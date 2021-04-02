@@ -27,10 +27,12 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+        stage('Hello') {
             agent { label "ec2-fleet" }
             steps {
-                git branch: 'master', url: 'https://github.com/nalauver/jenktest.git'
+                script {
+                    echo "Hello world!"
+                }
             }
         }
         stage('Parallel to Monitor Fleet and Virtualbox') {

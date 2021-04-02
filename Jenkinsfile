@@ -37,7 +37,7 @@ pipeline {
                          }
                     }
                 }
-                stages('Local') {
+                stage('Local') {
                     agent { label "neal-local" }
                     stage('Build') {
                         steps {

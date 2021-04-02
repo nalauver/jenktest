@@ -31,9 +31,11 @@ pipeline {
             parallel {
                 stage('EC2-Fleet') {
                     agent { label "ec2-fleet" }
-                    sh """
-                         echo 'wait for virtualbox to complete'
-                    """
+                    steps {
+                         sh """
+                            echo 'wait for virtualbox to complete'
+                         """
+                    }
                 }
                 stage('Local') {
                     agent { label "neal-local" }
